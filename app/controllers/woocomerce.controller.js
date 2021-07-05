@@ -37,16 +37,9 @@ exports.findOne = function (req, res) {
 exports.update = function (req, res) {
   var id = parseInt(req.params.id);
   var updatedProducts = req.body;
-
-  const data = {
-	regular_price: "1350",
-	manage_stock: true,
-	in_stock: true,
-	stock_quantity: 100
-  };
+  const data = updatedProducts
  
-  
-  api.put("products/11057", data)
+  api.put("products/" + id, data)
     .then((response) => {
 		res.send(response.data);
 		
