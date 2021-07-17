@@ -24,8 +24,26 @@ exports.create = function (req, res) {
 };
 
 exports.findAll = function (req, res) {
-  // console.log("--->Find All: \n" + JSON.stringify(customers, null, 4));
-  // res.end("All Customers: \n" + JSON.stringify(customers, null, 4));
+  console.log(req);
+  
+  api.get("products?page=" + req.query.page +"&per_page=" + req.query.per_page)
+    .then((response) => {
+		res.send(response.data);
+		
+    })
+    .catch((error) => {
+		res.send(error.response.data);
+    });
+};
+
+exports.search = function (req, res) {
+  api.get("products?search=" + req.query.search)
+    .then((response) => {
+		res.send(response.data);
+    })
+    .catch((error) => {
+		res.send(error.response.data);
+    });
 };
 
 exports.findOne = function (req, res) {
@@ -42,8 +60,8 @@ exports.update = function (req, res) {
   api.put("products/" + id, data)
     .then((response) => {
 		res.send(response.data);
-		
     })
+
     .catch((error) => {
 		res.send(error.response.data);
     //   return error.response.data;

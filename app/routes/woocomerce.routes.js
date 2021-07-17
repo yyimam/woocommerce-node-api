@@ -5,7 +5,10 @@ module.exports = function(app){
     app.post('api/products', woocomerce.create);
 
     //retrieve all products
-    app.get('api/products', woocomerce.findAll);
+    app.get('/api/products', woocomerce.findAll);
+
+    //retrieve all products
+    app.get('/api/products/search', woocomerce.search);
 
     //retrieve single product by id
     app.get('api/products/:id', woocomerce.findOne);
